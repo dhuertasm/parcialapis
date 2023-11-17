@@ -1,4 +1,4 @@
-import { ClubEntity } from "src/club/club.entity";
+import { ClubEntity } from "../../src/club/club.entity";
 import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
@@ -8,7 +8,7 @@ export class SocioEntity {
     id: string;
     
     @Column()
-    username: string;
+    name: string;
 
     @Column()
     email: string;
