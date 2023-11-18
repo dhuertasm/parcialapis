@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseInterceptors } from '@nestjs/common';
 import { BusinessErrorsInterceptor } from 'src/shared/interceptors/business-errors.interceptor';
 import { ClubSocioService } from './club-socio.service';
 import { SocioDto } from 'src/socio/socio.dto';
@@ -36,6 +36,7 @@ export class ClubSocioController {
     }
 
     @Delete(':clubId/members/:socioId')
+    @HttpCode(204)
     async deleteMemberFromClub(@Param('clubId') clubId: string, @Param('socioId') socioId: string) {
         return this.deleteMemberFromClub(clubId, socioId);
     }
