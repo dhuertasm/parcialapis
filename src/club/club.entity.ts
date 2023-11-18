@@ -18,7 +18,7 @@ export class ClubEntity {
     description: string;
 
     @ManyToMany(
-        () => SocioEntity, socio => socio.clubs
+        () => SocioEntity, socio => socio.clubs, {cascade: true}
     )
     @JoinTable()
     socios: SocioEntity[];
