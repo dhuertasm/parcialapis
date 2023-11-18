@@ -71,21 +71,17 @@ export class ClubSocioService {
 
     }
 
-    async updateMembersFromClub(clubId:string, idSocios: string[], socios: SocioEntity[]): Promise<ClubEntity> {
+    async updateMembersFromClub(clubId:string,socios: SocioEntity[]): Promise<ClubEntity> {
 
         const club : ClubEntity = await this.clubRepository.findOne({where: {id: clubId}, relations:['socios']});
         if (!club) {
             throw new BusinessLogicException("The club with the given id was not found", BusinessError.NOT_FOUND)
         }
 
-        if (idSocios.length !== socios.length) {
-            throw new BusinessLogicException("The Lenght of id array and socios array must be equal", BusinessError.BAD_REQUEST)
-        }
-
-
-        idSocios.map((id) => {
-            for (let i=0; i < socios.length; i++) {
-                if (club.socios[i].id === id) {
+       
+        socios.map((socio) => {
+            for (let i=0; i < club.socios.length; i++) {
+                if (club.socios[i].id === socio.id) {
                     club.socios[i] = socios[i];
                 }
             }
