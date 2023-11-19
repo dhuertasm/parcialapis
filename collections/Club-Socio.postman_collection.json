@@ -1,0 +1,1346 @@
+{
+	"info": {
+		"_postman_id": "a52512ad-250b-473c-bf97-0944f01838fb",
+		"name": "Club-Socio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24737132"
+	},
+	"item": [
+		{
+			"name": "Add socio to a club",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code 201\", function(){\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/clubs/{{club_id}}/members/{{socio_id_1}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"clubs",
+						"{{club_id}}",
+						"members",
+						"{{socio_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add socio to a club",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/clubs/{{club_id}}/members/{{socio_id_1}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"clubs",
+								"{{club_id}}",
+								"members",
+								"{{socio_id_1}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n\r\n    \"id\": \"14f05d0e-127fg5-11ed-861d-0242ac120032\",\r\n    \"image\": \"http://imagen.com/image2.jpg\",\r\n    \"foundationDate\": \"1976/11/10\",\r\n    \"description\": \"ipso lorem acta tff ordo seclorum\",\r\n    \"socios\": [ \r\n        {\r\n            \"id\": \"14f05d0e-11ed-861d-0242ac120032\",\r\n            \"name\": \"usuario2 club\",\r\n            \"birthDate\": \"1978/11/10\",\r\n            \"email\": \"usuario2@gmail.com\",\r\n            \"clubs\": []\r\n        }\r\n    ]\r\n\r\n   }"
+				}
+			]
+		},
+		{
+			"name": "Add invalid socio to a club",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code 404\", ()=>{\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"get error message\", ()=>{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.message).eql(\"The socio with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/clubs/{{club_id}}/members/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"clubs",
+						"{{club_id}}",
+						"members",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add invalid socio to a club",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/clubs/{{club_id}}/members/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"clubs",
+								"{{club_id}}",
+								"members",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"The socio with the given id was not found\" \r\n}"
+				}
+			]
+		},
+		{
+			"name": "Add socio to a invalid club",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code 404\", ()=>{\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"get error message\", ()=>{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.message).eql(\"The club with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/clubs/00000000-0000-0000-0000-000000000000/members/{{socio_id_1}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"clubs",
+						"00000000-0000-0000-0000-000000000000",
+						"members",
+						"{{socio_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add socio to a invalid club",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/clubs/00000000-0000-0000-0000-000000000000/members/{{socio_id_1}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"clubs",
+								"00000000-0000-0000-0000-000000000000",
+								"members",
+								"{{socio_id_1}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"The club with the given id was not found\" \r\n}"
+				}
+			]
+		},
+		{
+			"name": "Get all socios from club",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('status is 200', ()=>{\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test('lenght is 1', ()=>{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.length).to.greaterThan(0);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/clubs/{{club_id}}/members",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"clubs",
+						"{{club_id}}",
+						"members"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get all socios from club",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/clubs/{{club_id}}/members",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"clubs",
+								"{{club_id}}",
+								"members"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "[\r\n     {\r\n            \"id\": \"14f05d0e-1275-11ed-861d-0242ac120032\",\r\n            \"name\": \"usuario club\",\r\n            \"birthDate\": \"1978/10/10\",\r\n            \"email\": \"usuario@gmail.com\",\r\n            \"clubs\": [\r\n                {   \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n                    \"image\": \"http://imagen.com/image.jpg\",\r\n                    \"foundationDate\": \"1976/12/10\",\r\n                    \"description\": \"ipso lorem acta tff ordo seclorum\"\r\n                }\r\n                ]\r\n    },\r\n    {\r\n            \"id\": \"14f05d0e-1275-11ed-861d-0242ac120032\",\r\n            \"name\": \"usuario club\",\r\n            \"birthDate\": \"1978/10/10\",\r\n            \"email\": \"usuario@gmail.com\",\r\n            \"clubs\": [\r\n                {   \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n                    \"image\": \"http://imagen.com/image.jpg\",\r\n                    \"foundationDate\": \"1976/12/10\",\r\n                    \"description\": \"ipso lorem acta tff ordo seclorum\"\r\n                }\r\n                ]\r\n    }\r\n]"
+				}
+			]
+		},
+		{
+			"name": "Get a socio of a club",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('staus is 200', function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/clubs/{{club_id}}/members/{{socio_id_1}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"clubs",
+						"{{club_id}}",
+						"members",
+						"{{socio_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get a socio of a club",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/clubs/{{club_id}}/members/{{socio_id_1}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"clubs",
+								"{{club_id}}",
+								"members",
+								"{{socio_id_1}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": " {\r\n            \"id\": \"14f05d0e-1275-11ed-861d-0242ac120032\",\r\n            \"name\": \"usuario club\",\r\n            \"birthDate\": \"1978/10/10\",\r\n            \"email\": \"usuario@gmail.com\",\r\n            \"clubs\": []\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Get invalid socio of a club",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('staus is 404', function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"get error message\", ()=>{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.message).eql(\"The socio with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/clubs/{{club_id}}/members/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"clubs",
+						"{{club_id}}",
+						"members",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get a invalid socio of a club",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/clubs/{{club_id}}/members/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"clubs",
+								"{{club_id}}",
+								"members",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"The socio with the given id was not found\" \r\n}"
+				}
+			]
+		},
+		{
+			"name": "Get a socio of a invalid club",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('staus is 404', function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"get error message\", ()=>{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.message).eql(\"The club with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/clubs/00000000-0000-0000-0000-000000000000/members/{{socio_id_1}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"clubs",
+						"00000000-0000-0000-0000-000000000000",
+						"members",
+						"{{socio_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get a socio of a invalid club",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/clubs/00000000-0000-0000-0000-000000000000/members/{{socio_id_1}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"clubs",
+								"00000000-0000-0000-0000-000000000000",
+								"members",
+								"{{socio_id_1}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The club with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get socio not associated to club",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('staus is 412', function(){\r",
+							"    pm.response.to.have.status(412);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"get error message\", ()=>{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.message).eql(\"The socio with the given id is not associated to the club\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/clubs/{{club_id}}/members/{{socio_id_2}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"clubs",
+						"{{club_id}}",
+						"members",
+						"{{socio_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get socio not associated to club",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/clubs/{{club_id}}/members/{{socio_id_2}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"clubs",
+								"{{club_id}}",
+								"members",
+								"{{socio_id_2}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 412,\r\n    \"message\": \"The socio with the given id is not associated to the club\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Update socios of club",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[ \r\n  {\r\n    \"id\": \"{{socio_id_2}}\"\r\n  }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/clubs/{{club_id}}/members",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"clubs",
+						"{{club_id}}",
+						"members"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update socios of club",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"{{socio_id_2}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/clubs/{{club_id}}/members",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"clubs",
+								"{{club_id}}",
+								"members"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n\r\n    \"id\": \"14f05d0e-127fg5-11ed-861d-0242ac120032\",\r\n    \"image\": \"http://imagen.com/image2.jpg\",\r\n    \"foundationDate\": \"1976/11/10\",\r\n    \"description\": \"ipso lorem acta tff ordo seclorum\",\r\n    \"socios\": [ \r\n        {\r\n            \"id\": \"14f05d0e-11ed-861d-0242ac120032\",\r\n            \"name\": \"usuario2 club\",\r\n            \"birthDate\": \"1978/11/10\",\r\n            \"email\": \"usuario2@gmail.com\",\r\n            \"clubs\": []\r\n        }\r\n    ]\r\n\r\n   }"
+				}
+			]
+		},
+		{
+			"name": "Update socios of invalid club",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('staus is 404', function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"get error message\", ()=>{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.message).eql(\"The club with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[ \r\n  {\r\n    \"id\": \"{{socio_id_2}}\"\r\n  }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/clubs/00000000-0000-0000-0000-000000000000/members",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"clubs",
+						"00000000-0000-0000-0000-000000000000",
+						"members"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update socios of invalid club",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"{{socio_id_2}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/clubs/00000000-0000-0000-0000-000000000000/members",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"clubs",
+								"00000000-0000-0000-0000-000000000000",
+								"members"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"The club with the given id was not found\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Update invalid socios of club",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('staus is 404', function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"get error message\", ()=>{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.message).eql(\"The socio with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[ \r\n  {\r\n    \"id\": \"00000000-0000-0000-0000-000000000000\"\r\n  }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/clubs/{{club_id}}/members",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"clubs",
+						"{{club_id}}",
+						"members"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update invalid socios of club",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/clubs/{{club_id}}/members",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"clubs",
+								"{{club_id}}",
+								"members"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The socio with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete one socio of club",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('staus is 204', function(){\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/clubs/{{club_id}}/members/{{socio_id_2}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"clubs",
+						"{{club_id}}",
+						"members",
+						"{{socio_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete one socio of club",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/clubs/{{club_id}}/members/{{socio_id_2}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"clubs",
+								"{{club_id}}",
+								"members",
+								"{{socio_id_2}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Delete one invalid socio of club",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('staus is 404', function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"get error message\", ()=>{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.message).eql(\"The socio with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/clubs/{{club_id}}/members/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"clubs",
+						"{{club_id}}",
+						"members",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete one invalid socio of club",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/clubs/{{club_id}}/members/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"clubs",
+								"{{club_id}}",
+								"members",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"The socio with the given id was not found\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete one socio of invalid club",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('staus is 404', function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"get error message\", ()=>{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.message).eql(\"The club with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/clubs/00000000-0000-0000-0000-000000000000/members/{{socio_id_2}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"clubs",
+						"00000000-0000-0000-0000-000000000000",
+						"members",
+						"{{socio_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete one socio of invalid club",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/clubs/00000000-0000-0000-0000-000000000000/members/{{socio_id_2}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"clubs",
+								"00000000-0000-0000-0000-000000000000",
+								"members",
+								"{{socio_id_2}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"The club with the given id was not found\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete one socio  not associated to club",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('staus is 412', function(){\r",
+							"    pm.response.to.have.status(412);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"get error message\", ()=>{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.message).eql(\"The socio with the given id is not associated to the club\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/clubs/{{club_id}}/members/{{socio_id_1}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"clubs",
+						"{{club_id}}",
+						"members",
+						"{{socio_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete one socio  not associated to club",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/clubs/{{club_id}}/members/{{socio_id_1}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"clubs",
+								"{{club_id}}",
+								"members",
+								"{{socio_id_1}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 412,\r\n    \"message\": \"The socio with the given id is not associated to the club\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Add a club",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json();\r",
+							"pm.globals.set(\"club_id\", data.id);\r",
+							"\r",
+							"pm.test(\"status code is 201\", function(){\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"image\": \"http://imagen.com/image.jpg\",\r\n    \"foundationDate\": \"1976/12/10\",\r\n    \"description\": \"ipso lorem acta tff ordo seclorum\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/clubs",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"clubs"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add Club",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"image\": \"http://imagen.com/image.jpg\",\r\n    \"foundationDate\": \"1976/12/10\",\r\n    \"description\": \"ipso lorem acta tff ordo seclorum\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/clubs",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"clubs"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{   \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"image\": \"http://imagen.com/image.jpg\",\r\n    \"foundationDate\": \"1976/12/10\",\r\n    \"description\": \"ipso lorem acta tff ordo seclorum\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Add a socio id_1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json();\r",
+							"pm.globals.set(\"socio_id_1\", data.id);\r",
+							"\r",
+							"pm.test(\"status code is 201\", function(){\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n\r\n            \"name\": \"usuario club\",\r\n            \"birthDate\": \"1978/10/10\",\r\n            \"email\": \"usuario@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/members",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"members"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add a socio",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n\r\n            \"name\": \"usuario club\",\r\n            \"birthDate\": \"1978/10/10\",\r\n            \"email\": \"usuario@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/members",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"members"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": " {\r\n            \"id\": \"14f05d0e-1275-11ed-861d-0242ac120032\",\r\n            \"name\": \"usuario club\",\r\n            \"birthDate\": \"1978/10/10\",\r\n            \"email\": \"usuario@gmail.com\",\r\n            \"clubs\": []\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Add a socio id_2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json();\r",
+							"pm.globals.set(\"socio_id_2\", data.id);\r",
+							"\r",
+							"pm.test(\"status code is 201\", function(){\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n\r\n            \"name\": \"usuario2 club\",\r\n            \"birthDate\": \"1990/10/10\",\r\n            \"email\": \"usuario@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/members",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"members"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add a socio",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n\r\n            \"name\": \"usuario club\",\r\n            \"birthDate\": \"1978/10/10\",\r\n            \"email\": \"usuario@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/members",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"members"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": " {\r\n            \"id\": \"14f05d0e-1275-11ed-861d-0242ac120032\",\r\n            \"name\": \"usuario club\",\r\n            \"birthDate\": \"1978/10/10\",\r\n            \"email\": \"usuario@gmail.com\",\r\n            \"clubs\": []\r\n}"
+				}
+			]
+		}
+	]
+}
