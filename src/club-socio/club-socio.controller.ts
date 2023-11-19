@@ -38,7 +38,7 @@ export class ClubSocioController {
     @Delete(':clubId/members/:socioId')
     @HttpCode(204)
     async deleteMemberFromClub(@Param('clubId') clubId: string, @Param('socioId') socioId: string) {
-        return this.deleteMemberFromClub(clubId, socioId);
+        return await this.clubSocioService.deleteMemberFromClub(clubId, socioId);
     }
 
 

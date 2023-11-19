@@ -78,16 +78,14 @@ export class ClubSocioService {
             throw new BusinessLogicException("The club with the given id was not found", BusinessError.NOT_FOUND)
         }
 
-
-
-       
-        socios.map((socio) => {
-            for (let i=0; i < club.socios.length; i++) {
-                if (club.socios[i].id === socio.id) {
-                    club.socios[i] = socios[i];
-                }
+        for (let i = 0; i < socios.length; i++) {
+            const socio: SocioEntity = await this.socioRepository.findOne({where: {id: socios[i].id}})
+            if (!socio) {
+               throw new BusinessLogicException("The socio with the given id was not found", BusinessError.NOT_FOUND);
             }
-        });
+        }
+
+        club.socios = socios;
        
         return this.clubRepository.save(club);
         
