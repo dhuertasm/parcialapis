@@ -4,7 +4,7 @@ export class SocioDto {
     
     @IsString()
     @IsNotEmpty()
-    username: string;
+    name: string;
 
     @IsEmail()
     email: string;

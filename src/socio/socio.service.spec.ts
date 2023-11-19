@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { SocioService } from './socio.service';
 import { SocioEntity } from './socio.entity';
 import { Repository } from 'typeorm';
-import { TyperOrmTestingConfig } from '../../src/shared/testing-utils/testing-config';
+import { TyperOrmTestingConfig } from '../shared/testing-utils/testing-config';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import {faker} from '@faker-js/faker';
 import { serialize } from 'v8';

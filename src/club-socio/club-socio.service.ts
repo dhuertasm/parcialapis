@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ClubEntity } from '../../src/club/club.entity';
-import { BusinessError, BusinessLogicException } from '../../src/shared/errors/business-errors';
-import { SocioEntity } from '../../src/socio/socio.entity';
+import { ClubEntity } from '../club/club.entity';
+import { BusinessError, BusinessLogicException } from '../shared/errors/business-errors';
+import { SocioEntity } from '../socio/socio.entity';
 import { Repository} from 'typeorm';
 
 @Injectable()
@@ -77,6 +77,8 @@ export class ClubSocioService {
         if (!club) {
             throw new BusinessLogicException("The club with the given id was not found", BusinessError.NOT_FOUND)
         }
+
+
 
        
         socios.map((socio) => {

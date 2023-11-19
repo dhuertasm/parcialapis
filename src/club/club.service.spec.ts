@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ClubService } from './club.service';
-import { TyperOrmTestingConfig } from '../../src/shared/testing-utils/testing-config';
+import { TyperOrmTestingConfig } from '../shared/testing-utils/testing-config';
 import { ClubEntity } from './club.entity';
 import { Repository } from 'typeorm';
 import { getRepositoryToken } from '@nestjs/typeorm';

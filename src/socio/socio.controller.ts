@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseInterceptors } from '@nestjs/common';
 import { SocioService } from './socio.service';
-import { BusinessErrorsInterceptor } from 'src/shared/interceptors/business-errors.interceptor';
+import { BusinessErrorsInterceptor } from '../shared/interceptors/business-errors.interceptor';
 import { SocioDto } from './socio.dto';
 import { SocioEntity } from './socio.entity';
 import { plainToInstance } from 'class-transformer';
@@ -35,7 +35,7 @@ export class SocioController {
         return await this.socioService.update(socioId, socio);
     }
 
-    @Delete('socioId')
+    @Delete(':socioId')
     @HttpCode(204)
     async delete(@Param('socioId') socioId: string) {
         return await this.socioService.delete(socioId);

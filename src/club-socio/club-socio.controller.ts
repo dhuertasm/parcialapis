@@ -1,8 +1,8 @@
 import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseInterceptors } from '@nestjs/common';
-import { BusinessErrorsInterceptor } from 'src/shared/interceptors/business-errors.interceptor';
+import { BusinessErrorsInterceptor } from '../shared/interceptors/business-errors.interceptor';
 import { ClubSocioService } from './club-socio.service';
-import { SocioDto } from 'src/socio/socio.dto';
-import { SocioEntity } from 'src/socio/socio.entity';
+import { SocioDto } from '../socio/socio.dto';
+import { SocioEntity } from '../socio/socio.entity';
 import { plainToInstance } from 'class-transformer';
 
 @Controller('clubs')
@@ -18,7 +18,7 @@ export class ClubSocioController {
         return await this.clubSocioService.addMemberToclub(clubId, socioId);
     }
 
-    @Get(':clubId')
+    @Get(':clubId/members')
     async findMembersFromClub(@Param('clubId') clubId: string) {
         return await this.clubSocioService.findMembersFromClub(clubId);
     }
@@ -29,7 +29,7 @@ export class ClubSocioController {
 
     }
 
-    @Put(':clubId')
+    @Put(':clubId/members')
     async updateMembersFromClub(@Param('clubId') clubId: string, @Body() sociossDto: SocioDto[]) {
         const socios: SocioEntity[] = plainToInstance(SocioEntity, sociossDto);
         return await this.clubSocioService.updateMembersFromClub(clubId, socios);
